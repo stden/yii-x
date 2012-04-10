@@ -8,4 +8,5 @@ return array(
     'Access denied' => 'Доступ закрыт',
     'Folder name cannot be empty!' => 'Имя каталога не может быть пустым!',
     'File "{filename}" exists!' => 'Файл "{filename}" уже существует!',
+    'Wrong id={id}' => 'Неправильный id={id}',
 );
