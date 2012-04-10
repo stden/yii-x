@@ -20,23 +20,23 @@ class FileSize
         $ZB = 1180591620717411303424;
         $YB = 1208925819614629174706176;
         if ($size_in_bytes < $KB) {
-            return $size_in_bytes . ' ' . Yii::t('filesize', 'B');
+            return $size_in_bytes . ' ' . Yii::t('FileSize.filesize', 'B');
         } elseif ($size_in_bytes < $MB) {
-            return round($size_in_bytes / $KB, 2) . ' ' . Yii::t('filesize', 'KiB');
+            return round($size_in_bytes / $KB, 2) . ' ' . Yii::t('FileSize.filesize', 'KiB');
         } elseif ($size_in_bytes < $GB) {
-            return round($size_in_bytes / $MB, 2) . ' ' . Yii::t('filesize', 'MiB');
+            return round($size_in_bytes / $MB, 2) . ' ' . Yii::t('FileSize.filesize', 'MiB');
         } elseif ($size_in_bytes < $TB) {
-            return round($size_in_bytes / $GB, 2) . ' ' . Yii::t('filesize', 'GiB');
+            return round($size_in_bytes / $GB, 2) . ' ' . Yii::t('FileSize.filesize', 'GiB');
         } elseif ($size_in_bytes < $PB) {
-            return round($size_in_bytes / $TB, 2) . ' ' . Yii::t('filesize', 'TiB');
+            return round($size_in_bytes / $TB, 2) . ' ' . Yii::t('FileSize.filesize', 'TiB');
         } elseif ($size_in_bytes < $EB) {
-            return round($size_in_bytes / $PB, 2) . ' ' . Yii::t('filesize', 'PiB');
+            return round($size_in_bytes / $PB, 2) . ' ' . Yii::t('FileSize.filesize', 'PiB');
         } elseif ($size_in_bytes < $ZB) {
-            return round($size_in_bytes / $EB, 2) . ' ' . Yii::t('filesize', 'EiB');
+            return round($size_in_bytes / $EB, 2) . ' ' . Yii::t('FileSize.filesize', 'EiB');
         } elseif ($size_in_bytes < $YB) {
-            return round($size_in_bytes / $ZB, 2) . ' ' . Yii::t('filesize', 'ZiB');
+            return round($size_in_bytes / $ZB, 2) . ' ' . Yii::t('FileSize.filesize', 'ZiB');
         } else {
-            return round($size_in_bytes / $YB, 2) . ' ' . Yii::t('filesize', 'YiB');
+            return round($size_in_bytes / $YB, 2) . ' ' . Yii::t('FileSize.filesize', 'YiB');
         }
     }
 }
