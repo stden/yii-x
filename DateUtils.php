@@ -103,6 +103,7 @@ class DateUtils
     /**
      * @static Сколько осталось времени?
      * @param DateInterval $diff
+     * @return string Строка с оставшимся временем
      */
     public static function timeLeft(DateInterval $diff)
     {
@@ -111,7 +112,7 @@ class DateUtils
         // Если осталось больше одного дня => выводим только количество дней
         if ($diff->d >= 1)
             return $diff->format('%d ' . Yii::t('DateUtils.datetime', 'day', array($diff->d)));
-        // Если больше часа - выводим чсаы и минуты
+        // Если больше часа - выводим часы и минуты
         if ($diff->h >= 1)
             return $diff->format('%h ' . Yii::t('DateUtils.datetime', 'hour', array($diff->h)) . ' %I ' .
                 Yii::t('DateUtils.datetime', 'minute', array($diff->m)));
