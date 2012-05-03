@@ -11,6 +11,7 @@ class CButtonColumnSearch extends CButtonColumn
      */
     protected function renderFilterCellContent()
     {
-        echo GxHtml::submitButton('Поиск');
+        // TODO: Нормально реализовать!
+        echo GxHtml::button('Поиск');
     }
 }
