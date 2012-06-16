@@ -15,7 +15,7 @@ class HTML
      * @param int $columns во сколько колонок выводить кнопки
      * @return string the generated radio button list
      */
-    public static function activeRadioButtonGrid($model, $attribute, $data, $htmlOptions = array(), $columns = 3)
+    public static function activeRadioButtonGrid($model, $attribute, $data, $htmlOptions = [], $columns = 3)
     {
         CHtml::resolveNameID($model, $attribute, $htmlOptions);
         $selection = CHtml::resolveValue($model, $attribute);
@@ -34,7 +34,7 @@ class HTML
         }
 
         $hiddenOptions =
-            isset($htmlOptions['id']) ? array('id' => CHtml::ID_PREFIX . $htmlOptions['id']) : array('id' => false);
+            isset($htmlOptions['id']) ? ['id' => CHtml::ID_PREFIX . $htmlOptions['id']] : ['id' => false];
         $hidden = $uncheck !== null ? CHtml::hiddenField($name, $uncheck, $hiddenOptions) : '';
 
         return $hidden . self::radioButtonGrid($name, $selection, $data, $htmlOptions, $columns);
@@ -49,17 +49,17 @@ class HTML
      * @param int $columns Количество колонок в сетке (по-умочанию - 3)
      * @return string Набор радиобатонов в виде сетки
      */
-    public static function radioButtonGrid($name, $select, $data, $htmlOptions = array(), $columns = 3)
+    public static function radioButtonGrid($name, $select, $data, $htmlOptions = [], $columns = 3)
     {
         assert(is_int($columns));
 
         $template = isset($htmlOptions['template']) ? $htmlOptions['template'] : '{input} {label}';
         unset($htmlOptions['template'], $htmlOptions['separator']);
 
-        $labelOptions = isset($htmlOptions['labelOptions']) ? $htmlOptions['labelOptions'] : array();
+        $labelOptions = isset($htmlOptions['labelOptions']) ? $htmlOptions['labelOptions'] : [];
         unset($htmlOptions['labelOptions']);
 
-        $items = array();
+        $items = [];
         $baseID = CHtml::getIdByName($name);
         $id = 0;
         foreach ($data as $value => $label) {
@@ -68,7 +68,7 @@ class HTML
             $htmlOptions['id'] = $baseID . '_' . $id++;
             $option = CHtml::radioButton($name, $checked, $htmlOptions);
             $label = CHtml::label($label, $htmlOptions['id'], array_merge($labelOptions, HTML::$labelOptions));
-            $items[] = strtr($template, array('{input}' => $option, '{label}' => $label));
+            $items[] = strtr($template, ['{input}' => $option, '{label}' => $label]);
         }
 
         $cnt = 0;
@@ -153,7 +153,7 @@ class HTML
         echo "</p>";
     }
 
-    public static $labelOptions = array('style' => 'display:inline');
+    public static $labelOptions = ['style' => 'display:inline'];
 
 }
 

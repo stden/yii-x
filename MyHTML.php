@@ -17,10 +17,10 @@ class MyHTML
 
         if (file_exists($pathOnServer)) {
             echo CHtml::image(self::baseUrl() . '/' . $path, $path,
-                array("class" => "clickme", "title" => 'Фото',
+                ["class" => "clickme", "title" => 'Фото',
                     'id' => $id
                     // "width"=>"200", "height"=>"300"
-                )
+                ]
             );
         } else {
             echo "Файла $path на сервере нет!";

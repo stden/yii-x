@@ -23,10 +23,10 @@ class MigrationX extends CDbMigration
         if (is_null($tableName)) throw new CException('createManyToManyTable(): tableName is undefined');
 
         $this->createTable(
-            $tableName, array(
+            $tableName, [
             'id' => 'pk',
             'name' => 'string not null',
-        ), $this->options);
+        ], $this->options);
 
         if ($hasIndex) {
             $this->createIndex("{$tableName}_name", $tableName, 'name');
@@ -44,11 +44,11 @@ class MigrationX extends CDbMigration
         if (is_null($tableName)) throw new CException('createManyToManyTable(): tableName is undefined');
 
         $this->createTable(
-            $tableName, array(
+            $tableName, [
             'id' => 'pk',
             'name' => 'string not null',
             'internal' => 'string not null',
-        ), $this->options);
+        ], $this->options);
 
         $this->createIndex("{$tableName}_internal", $tableName, 'internal');
     }
@@ -69,9 +69,9 @@ class MigrationX extends CDbMigration
     {
         if (is_null($tableName)) throw new CException('createManyToManyTable(): tableName is undefined');
 
-        $createArray = array('id' => 'pk');
-        $fkArray = array();
-        $indexArray = array();
+        $createArray = ['id' => 'pk'];
+        $fkArray = [];
+        $indexArray = [];
 
         // construct
         foreach ($desc as $field => $conf) {
@@ -86,7 +86,7 @@ class MigrationX extends CDbMigration
             $fkArray[] =
                 "foreign key ($field) references {$conf['table']} ({$conf['field']}) on delete cascade on update cascade";
 
-            $indexArray[] = array("{$tableName}_{$field}", $tableName, $field);
+            $indexArray[] = ["{$tableName}_{$field}", $tableName, $field];
         }
         $createArray = array_merge($createArray, $fkArray);
 
@@ -107,7 +107,7 @@ class MigrationX extends CDbMigration
     protected function insertIdName($tableName, $data)
     {
         foreach ($data as $value) {
-            $this->insert($tableName, array('name' => $value));
+            $this->insert($tableName, ['name' => $value]);
         }
     }
 
@@ -120,7 +120,7 @@ class MigrationX extends CDbMigration
     protected function insertIdNameInternal($tableName, $data)
     {
         foreach ($data as $internal => $name) {
-            $this->insert($tableName, array('name' => $name, 'internal' => $internal));
+            $this->insert($tableName, ['name' => $name, 'internal' => $internal]);
         }
     }
 

@@ -94,13 +94,13 @@ class SQL_Table
 	/**
 	 * @var array|SQL_Column
 	 */
-	public $columns = array();
+	public $columns = [];
 
 	/**
 	 * @var array|string Имена полей - первичного ключа таблицы (пока поддерживается только один первичный ключ в
 	 * таблице)
 	 */
-	public $primaryKey = array();
+	public $primaryKey = [];
 
 	/**
 	 * @var string Название таблицы
@@ -293,7 +293,7 @@ class MSSQL_MYSQL
 	/**
 	 * @var array|SQL_Table Массив SQL таблиц
 	 */
-	public $tables = array();
+	public $tables = [];
 
 	/**
 	 * Получение схемы БД из MSSQL

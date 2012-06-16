@@ -56,7 +56,7 @@ class DateUtils
      */
     public static function endings($number, $h = 'day')
     {
-        return $number . ' ' . Yii::t('DateUtils.datetime', $h, array($number));
+        return $number . ' ' . Yii::t('DateUtils.datetime', $h, [$number]);
     }
 
     /**
@@ -111,14 +111,14 @@ class DateUtils
         // Если 1 день и более, то нужно указывать количество дней. Так будет проще восприниматься.
         // Если осталось больше одного дня => выводим только количество дней
         if ($diff->d >= 1)
-            return $diff->format('%d ' . Yii::t('DateUtils.datetime', 'day', array($diff->d)));
+            return $diff->format('%d ' . Yii::t('DateUtils.datetime', 'day', [$diff->d]));
         // Если больше часа - выводим часы и минуты
         if ($diff->h >= 1)
-            return $diff->format('%h ' . Yii::t('DateUtils.datetime', 'hour', array($diff->h)) . ' %I ' .
-                Yii::t('DateUtils.datetime', 'minute', array($diff->m)));
+            return $diff->format('%h ' . Yii::t('DateUtils.datetime', 'hour', [$diff->h]) . ' %I ' .
+                Yii::t('DateUtils.datetime', 'minute', [$diff->m]));
         // Если меньше часа - выводим минуты и секунды
-        return $diff->format('%i ' . Yii::t('DateUtils.datetime', 'minute', array($diff->m)) .
-            " %s " . Yii::t('DateUtils.datetime', 'second', array($diff->s)));
+        return $diff->format('%i ' . Yii::t('DateUtils.datetime', 'minute', [$diff->m]) .
+            " %s " . Yii::t('DateUtils.datetime', 'second', [$diff->s]));
     }
 }
 

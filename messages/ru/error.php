@@ -1,7 +1,7 @@
 <?php
 
 // Текст ошибок для класса UserException
-return array(
+return [
     'Folder exists!' => 'Каталог с таким именем уже есть!',
     'Please login first' => 'Пожалуйста, сначала залогиньтесь в системе!',
     'User already has this file!' => 'У пользователя уже есть такой файл!',
@@ -11,4 +11,4 @@ return array(
     'Wrong id={id}' => 'Неправильный id={id}',
     'To upload files, you must login!' => 'Чтобы загружать файлы, надо войти в систему!',
     'File not uploaded!' => 'Файл не загрузился на сервер',
-);
+];

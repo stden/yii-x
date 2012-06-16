@@ -11,7 +11,7 @@ class UserException extends CException
      * @param string $message Сообщение об ощибке
      * @param array|int $params Параметры сообщения для подстановки
      */
-    public function __construct($message, $params = array())
+    public function __construct($message, $params = [])
     {
         // Переводим сообщение об ошибке на текущий язык
         parent::__construct(Yii::t('UserException.error', $message, $params), 0);
