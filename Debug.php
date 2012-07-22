@@ -23,14 +23,19 @@ class Debug
      * @param CActiveRecord $value
      * @return string
      */
-    public static function Asserts($var_name, CActiveRecord $value)
+    public static function Asserts($var_name, $value)
     {
         if (is_null($value))
             return "\$this->assertNull($var_name);\n";
         $res = "";
-        foreach ($value->attributes as $k => $v) {
-            $res .= "\$this->assertEquals(" . var_export($v, true) . ",$var_name->$k);\n";
-        }
+        if (is_array($value))
+            foreach ($value as $k => $v) {
+                $res .= "\$this->assertEquals(" . var_export($v, true) . ",{$var_name}['{$k}']);\n";
+            }
+        if ($value instanceof CActiveRecord)
+            foreach ($value->attributes as $k => $v) {
+                $res .= "\$this->assertEquals(" . var_export($v, true) . ",$var_name->$k);\n";
+            }
         return $res;
     }
 }
