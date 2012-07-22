@@ -6,9 +6,9 @@ class CountryX
 {
     /**
      * Коды стран взяты: http://countrycode.org
-     * @static
-     * @param $country_code
-     * @return bool Говорят ли там по-русски?
+     * @static 
+     * @param $country_code string Полученный от пользователя код страны
+     * @return bool Возвращать ли страницу по-русски? true - русский, false - english
      */
     public static function understand_russian($country_code)
     {
