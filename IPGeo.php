@@ -34,10 +34,10 @@ class IPGeo
 {
 
     var $xml = ""; // текст возвращаемого xml
-    var $ip_arr = array(); // массив ip адресов
-    var $fields_arr = array("all"); // список запрашиваемых полей
+    var $ip_arr = []; // массив ip адресов
+    var $fields_arr = ["all"]; // список запрашиваемых полей
 //	var $fields_arr = array("city");
-    var $cache = array(); // кешь ответа
+    var $cache = []; // кешь ответа
 
     /**
      * Создание класса и запрос к серверу
@@ -47,8 +47,8 @@ class IPGeo
     function IPGeo($AIpList)
     {
         // Можно добавлять описание ip-адресса, чтобы уменьшить трафик обращения к серверу
-        $this->cache = array(
-            "127.0.0.1" => array(
+        $this->cache = [
+            "127.0.0.1" => [
                 "inetnum" => 0,
                 "inet-descr" => "",
                 "city" => "local",
@@ -56,8 +56,8 @@ class IPGeo
                 "district" => "",
                 "lat" => 0,
                 "lng" => 0
-            )
-        );
+            ]
+        ];
 
         if (IPGEO_DEBUG) {
             return true;
@@ -67,7 +67,7 @@ class IPGeo
             $ip_arr = $AIpList;
         } else {
             if (strpos($AIpList, ",") === False) {
-                $ip_arr = array(trim($AIpList));
+                $ip_arr = [trim($AIpList)];
             } else {
                 $ip_arr = explode(",", trim($AIpList));
             }
@@ -146,8 +146,8 @@ class IPGeo
      */
     function check_ip_list_valid($AIpList)
     {
-        $return = array();
-        $arr = array();
+        $return = [];
+        $arr = [];
 
         $in_cash = array_keys($this->cache);
 
@@ -158,7 +158,7 @@ class IPGeo
         }
 
         if (!count($arr))
-            return array();
+            return [];
 
         foreach ($arr as $ip) {
             if (preg_match("/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3}).([0-9]{1,3})/", $ip, $par)) {

@@ -69,7 +69,7 @@ class CountryX
                 '(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)' .
                 '(?P<quantifier>\d\.\d))?$/';
 
-            $splits = array();
+            $splits = [];
 
             printf("Lang:,,%s''\n", $lang);
             if (preg_match($pattern, $lang, $splits)) {
