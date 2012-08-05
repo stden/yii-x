@@ -2,9 +2,11 @@
 /**
  * Утилиты для работы с текстом (прежде всего в кодировке utf-8)
  * Функции strlen, mb_strlen без указания кодировки не подходят!
- * $this->assertEquals(8, strlen('Тест'));
- * $this->assertEquals(8, mb_strlen('Тест'));
- * $this->assertEquals(4, mb_strlen('Тест', 'utf-8'));
+ *   $this->assertEquals(8, strlen('Тест'));
+ *   $this->assertEquals(8, mb_strlen('Тест'));
+ * Русские буквы в utf-8 занимают по 2 байта, поэтому длина слова Тест якобы 8 символов 
+ * А теперь укажем кодировку явно:
+ *   $this->assertEquals(4, mb_strlen('Тест', 'utf-8'));
  *
  * Копирование подстроки:
  *   $this->assertEquals('Те', mb_substr('Тест', 0, 2, 'utf-8'));
