@@ -3,7 +3,7 @@ Yii-x набор компонент для Yii
 
 ## Установка
 
-* git submodule add git@github.com:stden/yii-x.git <application>/protected/extensions/yii-x.
+* `git submodule add git@github.com:stden/yii-x.git <application>/protected/extensions/yii-x`
 * Добавить следующие строки в файл конфигурации `protected/config/main.php`:
 
 ```php
@@ -22,8 +22,6 @@ Yii-x набор компонент для Yii
 #### Работа с днями рождений
 
 ```php
-<?php
-...
 <?php
 
 require_once dirname(__FILE__) . '/../bootstrap.php';
