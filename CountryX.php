@@ -6,7 +6,7 @@ class CountryX
 {
     /**
      * Коды стран взяты: http://countrycode.org
-     * @static 
+     * @static
      * @param $country_code string Полученный от пользователя код страны
      * @return bool Возвращать ли страницу по-русски? true - русский, false - english
      */
@@ -77,6 +77,18 @@ class CountryX
             } else {
                 return "\nno match\n";
             }
+        }
+    }
+
+    public static function Lang()
+    {
+        $lang = Yii::app()->request->preferredLanguage;
+        switch ($lang) {
+            case 'ru_ru':
+                return 'en';
+            default:
+                Yii::log('lang = ' . $lang);
+                return 'en';
         }
     }
 }
