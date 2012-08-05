@@ -29,11 +29,11 @@ class String
     }
 
     /**
-     * @static Подстрока
-     * @param $s
-     * @param $start
-     * @param $len
-     * @return string
+     * @static Вырезать подстроку
+     * @param $s string Исходная строка
+     * @param $start int С какого символа
+     * @param $len int Длина подстроки
+     * @return string Подстрока
      */
     public static function subStr($s, $start, $len)
     {
@@ -44,7 +44,7 @@ class String
      * @static Обрезка длинного текста. Обрезать... по три точки... Чтобы всё влазило...
      * @param $s Исходная строка
      * @param $len До скольки символов уменьшить
-     * @return string
+     * @return string Обрезанная строка
      */
     public static function trimLen($s, $len)
     {
