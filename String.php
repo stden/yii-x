@@ -32,7 +32,7 @@ class String
      * @static Вырезать подстроку
      * @param $s string Исходная строка
      * @param $start int С какого символа
-     * @param $len int По какой символ
+     * @param $len int Длина подстроки
      * @return string Подстрока
      */
     public static function subStr($s, $start, $len)
