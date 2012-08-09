@@ -100,6 +100,10 @@ class Browser
                 echo CHtml::link('1. ' . Yii::t('Browser.browser', 'Export Google Chrome bookmarks to file'),
                     'http://www.google.com/bookmarks/bookmarks.html');
                 break;
+            case Browser::Internet_Explorer:
+                echo CHtml::link('1. ' . Yii::t('Browser.browser', 'Export Google Chrome bookmarks to file'),
+                    'http://www.google.com/bookmarks/bookmarks.html');
+                break;
             default:
                 throw new Exception($browser->browser);
         }
