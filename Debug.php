@@ -16,13 +16,14 @@ class Debug
 		return "\${$var_name} = " . var_export($value, true) . ";\n";
 	}
 
-	/**
-	 * Генерируем assertEquals для всех полей объекта.
-	 * @static
-	 * @param $var_name
-	 * @param $value
-	 * @return string
-	 */
+    /**
+     * Генерируем assertEquals для всех полей объекта.
+     * @static
+     * @param $var_name
+     * @param $value
+     * @throws Exception
+     * @return string
+     */
 	public static function Asserts($var_name, $value)
 	{
 		if (is_null($value))
