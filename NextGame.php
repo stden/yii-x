@@ -24,12 +24,19 @@ class NextGame
     /**
      * @var int secure = , 1 - Запрос Сервер-сервер
      */
-//    public $secure;
+    // public $secure;
 
     public $clientKey;
 
-
     public $secret_key;
+    public $usr_nickname;
+    public $user_id;
+
+    public $site_id;
+
+    public $usr_first_name;
+
+    public $t;
 
     public static function SortAndPack($params)
     {
@@ -79,7 +86,7 @@ class NextGame
         $params = array_filter(get_object_vars($this));
         unset($params['clientKey']);
 
-        $params['secure'] = 0; // 0 - Запрос Клиент-сервер
+        //$params['secure'] = 0; // 0 - Запрос Клиент-сервер
         return $params;
     }
 
