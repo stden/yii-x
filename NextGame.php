@@ -100,7 +100,7 @@ class NextGame
         $params = array_filter(get_object_vars($this));
         unset($params['clientKey']);
 
-        //$params['secure'] = 0; // 0 - Запрос Клиент-сервер
+        $params['secure'] = 0; // 0 - Запрос Клиент-сервер
         return $params;
     }
 

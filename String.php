@@ -4,7 +4,7 @@
  * Функции strlen, mb_strlen без указания кодировки не подходят!
  *   $this->assertEquals(8, strlen('Тест'));
  *   $this->assertEquals(8, mb_strlen('Тест'));
- * Русские буквы в utf-8 занимают по 2 байта, поэтому длина слова Тест якобы 8 символов 
+ * Русские буквы в utf-8 занимают по 2 байта, поэтому длина слова Тест якобы 8 символов
  * А теперь укажем кодировку явно:
  *   $this->assertEquals(4, mb_strlen('Тест', 'utf-8'));
  *
@@ -59,4 +59,29 @@ class String
         return $s;
     }
 
+    /**
+     * Начинается ли строка с подстроки?
+     * @param $str Строка
+     * @param $start Подстрока (начало)
+     * @return bool true - если начинается
+     */
+    public static function startsWith($str, $start)
+    {
+        $length = strlen($start);
+        return (substr($str, 0, $length) === $start);
+    }
+
+    /**
+     * @static Заканчивается ли строка $string на $test
+     * @param $str Какую строку проверяем
+     * @param $end Какую подстроку ищем?
+     * @return bool true - если заканчивается
+     */
+    public static function endsWith($str, $end)
+    {
+        $strLen = strlen($str);
+        $testLen = strlen($end);
+        if ($testLen > $strLen) return false;
+        return substr_compare($str, $end, -$testLen) === 0;
+    }
 }
