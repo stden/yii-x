@@ -63,9 +63,17 @@ class NextGame
      * @param string $secretKey
      * @return string
      */
-    public static function generateSignature(array $params, $secretKey)
+    function generateSignature(array $params, $secretKey)
     {
-        $paramsStr = self::SortAndPack($params);
+        // сортируем прараметры по ключу
+        ksort($params, SORT_STRING);
+
+        // объединяем пары ключ=значение в строку
+        $paramsStr = '';
+
+        foreach ($params as $key => $value) {
+            $paramsStr .= $key . '=' . $value;
+        }
 
         // добавляем секретный ключ и вычисляем MD5-хэш
         $signature = md5($paramsStr . $secretKey);
@@ -165,6 +173,25 @@ class NextGame
     }
 
     /**
+     * URL для загрузки из каталога
+     * @param $params
+     * @return string
+     */
+    public function xURL($baseUrl, $params)
+    {
+        // <Подпись> - подпись запроса.
+        $sig = $this->catalogSig($params);
+
+        // Собираем URL для загрузки каталога
+        $s = $baseUrl;
+        foreach ($params as $k => $v)
+            $s .= "$k=$v&";
+        $s .= 'sig=' . $sig;
+
+        return $s;
+    }
+
+    /**
      * @return string Обработанный URL
      */
     public function EscapedPageURL()
@@ -216,5 +243,19 @@ class NextGame
     public function gameURL()
     {
         return $this->gameUrlByParams($this->gameParams());
+    }
+
+    public function addClientSignature($url)
+    {
+        $param = [];
+        parse_str(parse_url($url, PHP_URL_QUERY), $param); //получаем параметры из ссылки в массив
+        $line = $param['uid'];
+        ksort($param);
+        foreach ($param as $name => $value) {
+            $line .= $name . '=' . $value; //добавляем строку пары ключ=значение
+        }
+        $line .= $this->clientKey; //добавляем ключ клиент-сервер
+        $url .= '&sig=' . md5($line); //добавляем в ссылку подпись
+        return $url;
     }
 }
