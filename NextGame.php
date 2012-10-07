@@ -32,7 +32,9 @@ class NextGame
     public $clientKey;
 
     public $secret_key;
+
     public $usr_nickname;
+
     public $user_id;
 
     public $site_id;
@@ -126,6 +128,9 @@ class NextGame
     }
 
     const CATALOG_URL = 'http://api2.nextgame.ru/iframe/js/catalogue/?';
+    public $page_url;
+    public $frame_id;
+    public $tval;
 
     /**
      * Подпись запроса к каталогу
@@ -157,5 +162,56 @@ class NextGame
         $s .= 'sig=' . $sig;
 
         return $s;
+    }
+
+    /**
+     * @return string Обработанный URL
+     */
+    public function EscapedPageURL()
+    {
+        return urlencode($this->page_url);
+    }
+
+    /**
+     * Ссылка на игу по параметрам
+     * @param $params
+     * @return string
+     */
+    public function gameURL($params)
+    {
+        $s = "";
+        foreach ($params as $k => $v)
+            $s .= "$k=" . urlencode($v) . "&";
+
+        return "http://api2.nextgame.ru/iframe/?{$s}sig=" . $this->catalogSig($params) .
+            "&t=$this->t&page_url=" . $this->EscapedPageURL();
+    }
+
+    /**
+     * @return string Подпись для игры
+     */
+    public function gameSig()
+    {
+        return $this->catalogSig([
+            'site_id' => $this->site_id,
+            'app_id' => $this->app_id,
+            'frame_id' => $this->frame_id,
+            'user_id' => $this->user_id,
+            'tval' => $this->tval,
+        ]);
+    }
+
+    /**
+     * @return string Ссылка для игр прямо по параметрам
+     */
+    public function genGameURL()
+    {
+        return $this->gameURL([
+            'site_id' => $this->site_id,
+            'app_id' => $this->app_id,
+            'frame_id' => $this->frame_id,
+            'user_id' => $this->user_id,
+            'tval' => $this->tval,
+        ]);
     }
 }
