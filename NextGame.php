@@ -26,6 +26,9 @@ class NextGame
      */
     // public $secure;
 
+    /**
+     * @var string
+     */
     public $clientKey;
 
     public $secret_key;
@@ -38,6 +41,7 @@ class NextGame
 
     public $t;
 
+    // Сортировка параметров по имени и упаковка в строку
     public static function SortAndPack($params)
     {
         // сортируем параметры по ключу
@@ -121,4 +125,37 @@ class NextGame
         return $paramsStr . $this->secret_key;
     }
 
+    const CATALOG_URL = 'http://api2.nextgame.ru/iframe/js/catalogue/?';
+
+    /**
+     * Подпись запроса к каталогу
+     * @param $params
+     * @return string
+     */
+    public function catalogSig($params)
+    {
+        $paramsStr = NextGame::SortAndPack($params);
+        // sig = md5(params + client_key)
+        $s = $paramsStr . $this->clientKey;
+        return md5($s);
+    }
+
+    /**
+     * URL для загрузки из каталога
+     * @param $params
+     * @return string
+     */
+    public function catalogURL($params)
+    {
+        // <Подпись> - подпись запроса.
+        $sig = $this->catalogSig($params);
+
+        // Собираем URL для загрузки каталога
+        $s = NextGame::CATALOG_URL;
+        foreach ($params as $k => $v)
+            $s .= "$k=$v&";
+        $s .= 'sig=' . $sig;
+
+        return $s;
+    }
 }
