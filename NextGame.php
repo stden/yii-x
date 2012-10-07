@@ -177,7 +177,7 @@ class NextGame
      * @param $params
      * @return string
      */
-    public function gameURL($params)
+    public function gameUrlByParams($params)
     {
         $s = "";
         foreach ($params as $k => $v)
@@ -192,26 +192,29 @@ class NextGame
      */
     public function gameSig()
     {
-        return $this->catalogSig([
+        return $this->catalogSig($this->gameParams());
+    }
+
+    public function gameParams()
+    {
+        $p = [
             'site_id' => $this->site_id,
             'app_id' => $this->app_id,
             'frame_id' => $this->frame_id,
             'user_id' => $this->user_id,
             'tval' => $this->tval,
-        ]);
+        ];
+        if (!empty($this->usr_nickname)) {
+            $p['custom_prm'] = 'usr_nickname=' . $this->usr_nickname;
+        }
+        return $p;
     }
 
     /**
      * @return string Ссылка для игр прямо по параметрам
      */
-    public function genGameURL()
+    public function gameURL()
     {
-        return $this->gameURL([
-            'site_id' => $this->site_id,
-            'app_id' => $this->app_id,
-            'frame_id' => $this->frame_id,
-            'user_id' => $this->user_id,
-            'tval' => $this->tval,
-        ]);
+        return $this->gameUrlByParams($this->gameParams());
     }
 }
