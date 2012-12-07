@@ -1,6 +1,6 @@
 <?php
 /**
- * Работа с днями рождений и датами
+ * Work with dates and birthdays
  */
 class DateUtils
 {
