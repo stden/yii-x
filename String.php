@@ -84,4 +84,13 @@ class String
         if ($testLen > $strLen) return false;
         return substr_compare($str, $end, -$testLen) === 0;
     }
+
+    /**
+     * Содержил ли строка русские буквы?
+     * @param $s Строка для анализа
+     */
+    public static function containRussianLetters($s)
+    {
+        return preg_match("/[А-Яа-яЁё]/iu", $s) == 1;
+    }
 }
