@@ -88,6 +88,7 @@ class String
     /**
      * Содержил ли строка русские буквы?
      * @param $s Строка для анализа
+     * @return bool true - содержит, false - не содержит
      */
     public static function containRussianLetters($s)
     {
